@@ -3,7 +3,7 @@ console.log("index.js line #1");
 (async function () {
   window.Flywheel.initExtension({
     scope: "ReadWrite",
-    validateOrigin: (origin) => origin.endsWith("flywheel.io"),
+    validateOrigin: (origin) => (origin.endsWith("flywheel.io") || origin.endsWith("octaveb.io")),
   }).then((extension) => {
     window.flywheelExtension = extension;
 
