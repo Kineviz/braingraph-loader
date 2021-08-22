@@ -1,13 +1,44 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Empty project</title>
-        <meta charset="utf-8">
-    </head>
-    <body>
-        <p>braingraph-loader</p>
-        <div id="app-root"></div>
-        <script src="https://cdn.flywheel.io/sdk/extension/flywheel-extension-0.7.3.min.js"></script>
-        <script src="index.js"></script>
-    </body>
+  <head>
+    <title>Empty project</title>
+    <meta charset="utf-8" />
+    <style type="text/css">
+      .loader {
+        border: 1px solid #f3f3f3;
+        border-radius: 50%;
+        border-top: 1px solid #3498db;
+        width: 15px;
+        height: 15px;
+        -webkit-animation: spin 2s linear infinite; /* Safari */
+        animation: spin 2s linear infinite;
+      }
+
+      /* Safari */
+      @-webkit-keyframes spin {
+        0% {
+          -webkit-transform: rotate(0deg);
+        }
+        100% {
+          -webkit-transform: rotate(360deg);
+        }
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <p>Loading BrainGraph...</p>
+    <div class="loader"></div>
+    <div id="app-root"></div>
+    <script src="https://cdn.flywheel.io/sdk/extension/flywheel-extension-0.7.3.min.js"></script>
+    <script src="index.js"></script>
+  </body>
 </html>

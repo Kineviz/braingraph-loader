@@ -1,9 +1,8 @@
-console.log("index.js line #1");
-
 (async function () {
   window.Flywheel.initExtension({
     scope: "ReadWrite",
-    validateOrigin: (origin) => (origin.endsWith("flywheel.io") || origin.endsWith("octaveb.io")),
+    validateOrigin: (origin) =>
+      origin.endsWith("flywheel.io") || origin.endsWith("octaveb.io"),
   }).then((extension) => {
     window.flywheelExtension = extension;
 
@@ -31,12 +30,13 @@ console.log("index.js line #1");
           "papaya.js",
           "bundle.js",
         ];
-        for (const fileName of scriptOrder) {
-          const file = getFile(fileName);
-          console.log("fetching url of", file.name);
-          const url = await extension.getFileUrl(projectContainer, file);
-          addScriptTag(url);
-        }
+        Promise.all(
+          scriptOrder.map((fileName) => {
+            const file = getFile(fileName);
+            console.log("fetching url of", file.name);
+            return extension.getFileUrl(projectContainer, file);
+          })
+        ).then((urls) => urls.forEach((url) => addScriptTag(url)));
       });
   });
 })();
